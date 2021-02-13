@@ -1,0 +1,17 @@
+dist/
+coverage/
+tmp/
+out-tsc/
+bazel-out/
+node_modules/
+.vscode/
+.idea/
+.prettierignore
+package-lock.json
+package.json
+yarn.lock
+*.ico
+*.png
+*.svg
+.gitkeep
+*.sass
