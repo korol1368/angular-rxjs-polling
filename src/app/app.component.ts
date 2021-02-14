@@ -19,6 +19,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.pollingService.poll<ApiResponse[]>(environment.apiUrl).subscribe((result) => {
+      console.log(result);
       const response = result[0];
       this.breeds = response.breeds;
       this.id = response.id;

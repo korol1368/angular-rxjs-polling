@@ -4,8 +4,8 @@
 
 export const environment = {
   production: false,
-  apiUrl: 'https://api.thecatapi.com/v1/images/search',
-  period: 10000,
+  apiUrl: '/mock/responses/thecatapi.com.response.json',
+  period: 2000,
 };
 
 /*
