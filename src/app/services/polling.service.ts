@@ -13,7 +13,19 @@ export class PollingService {
     };
   };
 
+  whenOnline = () => {
+    const online$ = fromEvent(window, 'online').pipe(map(() => true));
+    const offline$ = fromEvent(window, 'offline').pipe(map(() => false));
+
+    return <T>(source: Observable<T>) => {
+      return source.pipe(
+        takeUntil(offline$),
+        repeatWhen(() => online$)
+      );
+    };
+  };
+
   poll<T>(url: string): Observable<T> {
-    return this.http.get<T>(url).pipe(this.pollWithPeriod(10000));
+    return this.http.get<T>(url).pipe(this.pollWithPeriod(10000), this.whenOnline());
   }
 }
