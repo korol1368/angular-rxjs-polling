@@ -1,5 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {Observable} from 'rxjs';
 import {PollingService} from './services/polling.service';
 import {environment} from '../environments/environment';
 import {ApiResponse} from './models/apiResponse.model';
@@ -16,10 +15,10 @@ export class AppComponent implements OnInit {
   width!: number;
   height!: number;
 
-  constructor(private appService: PollingService) {}
+  constructor(private pollingService: PollingService) {}
 
   ngOnInit(): void {
-    this.appService.poll<ApiResponse[]>(environment.apiUrl).subscribe((result) => {
+    this.pollingService.poll<ApiResponse[]>(environment.apiUrl).subscribe((result) => {
       const response = result[0];
       this.breeds = response.breeds;
       this.id = response.id;
