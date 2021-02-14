@@ -10,18 +10,22 @@ import {ApiResponse} from './models/apiResponse.model';
   styleUrls: ['./app.component.scss'],
 })
 export class AppComponent implements OnInit {
-  breeds$!: Observable<[]>;
-  id$!: Observable<string>;
-  url$!: Observable<string>;
-  width$!: Observable<number>;
-  height$!: Observable<number>;
+  breeds!: [];
+  id!: string;
+  url!: string;
+  width!: number;
+  height!: number;
 
   constructor(private appService: PollingService) {}
 
   ngOnInit(): void {
     this.appService.poll<ApiResponse[]>(environment.apiUrl).subscribe((result) => {
       const response = result[0];
-      console.log(response.url);
+      this.breeds = response.breeds;
+      this.id = response.id;
+      this.url = response.url;
+      this.width = response.width;
+      this.height = response.height;
     });
   }
 }
